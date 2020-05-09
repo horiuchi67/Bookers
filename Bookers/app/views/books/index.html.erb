@@ -1,0 +1,69 @@
+<head>
+    
+    
+
+
+  <link rel="stylesheet" media="all" href="/assets/application-d12397cbc3a266ce5a99f7b588223090c55ca04a439953bb5f9304395de93fc3.css" data-turbolinks-track="reload">
+  <script src="/assets/application-4e370d3723b6f204426a9414077d365ea07814cce5619ae24fb7e581988f19ed.js" data-turbolinks-track="reload"></script>
+  <title></title>
+  <meta name="csrf-param" content="authenticity_token">
+  <meta name="csrf-token" content="8u2/FzzUGsMDur0tPiOM6PdV9BICiig4UCAN8LTK3ODro7h7W6k7CrNqmRbIqpP+POW6m1KQbjIcZWKX+CZdVw==">
+</head>
+<body>
+    <p id="notice"></p>
+
+<h1>Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th class="book-title">Title</th>
+      <th class="book-body">Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td class="book-title1"><%= book.title %></td>
+        <td class="book-body1"><%= book.body %></td>
+      <td><%= link_to "Show", book_path(book.id) %><td>
+      <td><%= link_to "Edit", edit_book_path(book.id) %><td>
+      <td><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+      </tr>
+
+     <% end %>
+  </tbody>
+</table>
+
+
+
+
+  
+
+</body>
+
+<h2>New book</h2>
+
+ <% if @book.errors.any? %>
+    <ul>
+      <%= @book.errors.count %><span>error</span>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  
+<% end %>
+<!-- form_for部分 -->
+<%= form_for(@book) do |f| %>
+
+    <h4>Title</h4>
+    <%= f.text_field :title %>
+ 
+    <h4>Body</h4>
+    <%= f.text_area :body %>
+ 
+    <br><br><%= f.submit 'Create Book' %>
+ 
+<% end %>
